@@ -63,10 +63,10 @@ app.post('/post', function (req, res) {
     if (req.query.key && req.query.key !== ''){
         const key = req.query.key;
         myDB.put(key, req.body).then((accept)=>{
-            console.log('/atom POST accept = ', accept, ' ', req.body);
+            console.log('/post POST accept = ', accept, ' ', req.body);
             res.send({status: 1, info: "Save successfuly."});
         }, reject =>{
-            console.log('/atom POST reject = ', reject);
+            console.log('/post POST reject = ', reject);
             res.send({status: 0, info: "Save Failed."});
         });
     }
