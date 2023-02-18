@@ -47,7 +47,7 @@ const router = async () => {
             route: routes[0],
             result: [location.hash]
         };
-        if (location.hash === '') { // hash hack for now. 
+        if (location.path !== '/' && location.hash === '') { // TODO: should redirect to /#/ instead of hack like this. 
             match = {
                 route: routes[1],
                 result: [location.hash]
