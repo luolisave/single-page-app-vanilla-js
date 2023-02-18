@@ -14,7 +14,7 @@ export default class extends AbstractView {
         posts.forEach(post => {
             let rowSummary = ``;
             if (post.data.title) {
-                rowSummary = `${post.data.title}`
+                rowSummary = `<a href="#/posts/${post.key}">${post.data.title}</a>`
             } else if(post.data.url) {
                 rowSummary = `<a target="_blank" href="${post.data.url}">${post.data.url}</a>`
             } else {

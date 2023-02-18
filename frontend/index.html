@@ -14,5 +14,55 @@
     </nav>
     <div id="app"></div>
     <script type="module" src="/static/js/index.js"></script>
+    
+    
+    <style>
+        .float-notice {
+            position: fixed;
+            bottom: -40px;
+            left: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            color: #fff;
+
+            transform: translateY(-55px);
+            transition: all 1.5s ease;
+        }
+
+        .float-notice-success {
+            background-color: #4CAF50;
+        }
+
+        .float-notice-fail {
+            background-color: #F44336;
+        }
+
+        .float-notice-hide {
+            opacity: 0;
+            transform: translateY(+50px);
+            transition: all 0.5s ease;
+        }
+    </style>
+    <script>
+        function createFloatNotice(message, isSuccess = true) {
+            const notice = document.createElement("div");
+            notice.classList.add("float-notice");
+            notice.innerText = message;
+            if (isSuccess) {
+                notice.classList.add("float-notice-success");
+            } else {
+                notice.classList.add("float-notice-fail");
+            }
+            document.body.appendChild(notice);
+            setTimeout(() => {
+                notice.classList.add("float-notice-hide");
+                setTimeout(() => {
+                    notice.remove();
+                }, 500);
+            }, 4000);
+        }
+    </script>
 </body>
 </html>

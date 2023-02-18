@@ -2,6 +2,7 @@ const express = require("express");
 const path = require("path");
 
 const app = express();
+app.use(express.json());
 
 // lmdb: https://www.npmjs.com/package/lmdb
 const lmdb = require('lmdb');
@@ -16,13 +17,19 @@ function getData(key) {
 }
 //*  insert few test data to DB -----------------------------------------------------------------------------
 async function testDB(key) {
-    await myDB.put(key, { content: 'some test content in '+key });
+    await myDB.put(key, { title:'title '+key,  content: 'some test content in '+key });
     const text = myDB.get(key).content; // 'Hello, World!'
     console.log(`myDB.get('${key}' =`, text);
 }
 testDB('TEST_DB_KEY_1');
 testDB('TEST_DB_KEY_2');
 testDB('TEST_DB_KEY_3');
+testDB('TEST_DB_KEY_4');
+testDB('TEST_DB_KEY_5');
+testDB('TEST_DB_KEY_6');
+testDB('TEST_DB_KEY_7');
+testDB('TEST_DB_KEY_8');
+testDB('TEST_DB_KEY_9');
 // test db ends ------------------------------------------------------------------ -----
 //*/
 
@@ -64,13 +71,18 @@ app.get('/post', function (req, res) {
 app.post('/post', function (req, res) {
     if (req.query.key && req.query.key !== ''){
         const key = req.query.key;
-        myDB.put(key, req.body).then((accept)=>{
-            console.log('/post POST accept = ', accept, ' ', req.body);
-            res.send({status: 1, info: "Save successfuly."});
-        }, reject =>{
-            console.log('/post POST reject = ', reject);
-            res.send({status: 0, info: "Save Failed."});
-        });
+        if (!req.body) {
+            res.send({status: 0, info: "Save Failed. Empty body!"});
+        } else {
+            myDB.put(key, req.body).then((accept)=>{
+                console.log('/post POST accept = ', accept, ' ', req.body);
+                res.send({status: 1, info: "Save successfuly."});
+            }, reject =>{
+                console.log('/post POST reject = ', reject);
+                res.send({status: 0, info: "Save Failed."});
+            });
+        }
+        
     }
 });
 

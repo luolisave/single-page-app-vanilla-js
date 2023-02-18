@@ -16,6 +16,20 @@ export default class {
                 });
     }
 
+    async apiPost(url, data){
+        console.log('data', data);
+        let options = {
+            method: "POST",
+            headers: {
+                "Content-Type":"application/json",
+            },
+            body: JSON.stringify(data)      
+        }
+        let p = await fetch(url, options);
+        let response = await p.json();
+        return response;
+    }
+
     async getHtml() {
         return "";
     }
