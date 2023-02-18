@@ -61,7 +61,6 @@ app.get('/post', function (req, res) {
             } else {
                 res.send({status:1, info:'found key '+ req.query.key, data: jsonObject});
             }
-            
         }
     } else {
         res.send({status:0, info:'key cannot be undefined!'});
