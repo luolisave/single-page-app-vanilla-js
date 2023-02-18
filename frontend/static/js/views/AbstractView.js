@@ -30,6 +30,15 @@ export default class {
         return response;
     }
 
+    async apiDelete(url) {
+        let options = {
+            method: "DELETE"     
+        }
+        let p = await fetch(url, options);
+        let response = await p.json();
+        return response;
+    }
+
     async getHtml() {
         return "";
     }

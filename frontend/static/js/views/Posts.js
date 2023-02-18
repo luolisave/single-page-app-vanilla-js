@@ -26,7 +26,7 @@ export default class extends AbstractView {
                         ${rowSummary}
                     </div>
                     <div class="post-actions">
-                        <button class="btn btn-red btn-medium">Del</button>
+                        <button onclick="$scope.deletePost('${post.key}')" class="btn btn-red btn-medium">Del</button>
                     </div>
                 </div>
             `;
@@ -35,12 +35,24 @@ export default class extends AbstractView {
     }
 
     async getHtml() {
-        
         return `
             <h1>Posts</h1>
             <div class="post-list">
                 ${await this.renderPosts()}
             </div>
         `;
+    }
+
+    async deletePost(key) {
+        let okay = confirm('Delete post: '+key);
+        if (okay) {
+            const rs = await this.apiDelete(`/post?key=${key}`);
+            if(rs && rs.status) {
+                createFloatNotice('Delete Success.');
+                document.querySelector("#app").innerHTML = await this.getHtml(); // TODO: need to find a better way to refresh page.
+            } else {
+                alert('Delete failed!');
+            }
+        }
     }
 }

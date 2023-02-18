@@ -85,6 +85,22 @@ app.post('/post', function (req, res) {
     }
 });
 
+app.delete('/post', function (req, res) {
+    if (req.query.key && req.query.key !== ''){
+        const key = req.query.key;
+        myDB.remove(key).then(
+            (accept)=>{
+                console.log('/post DELETE accept = ', accept, ' ', req.body);
+                res.send({status: 1, info: `DELETE key ${key} successfuly.`});
+            }, 
+            reject =>{ 
+                console.log('/post DELETE reject = ', reject);
+                res.send({status: 0, info: `DELETE key ${key} failed.`});
+            }
+        );
+    }
+});
+
 app.use("/static", express.static(path.resolve(__dirname, "frontend", "static")));
 
 // app.get("/*", (req, res) => {
