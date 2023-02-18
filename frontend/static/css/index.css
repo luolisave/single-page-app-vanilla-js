@@ -64,26 +64,76 @@ a {
     color: #009579;
 }
 
-button {
+input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
     font-size: 16px;
-    padding: 10px 20px;
+}
+
+textarea {
+    box-sizing: border-box;
+    padding: 12px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    font-size: 16px;
+}
+
+button.btn {
+    font-size: 16px;
     border: none;
     border-radius: 5px;
-    background-color: #4CAF50;
-    color: #fff;
+    
     cursor: pointer;
     box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
     transition: all 0.3s ease;
-  }
+}
+
+button.btn-green {
+    background-color: #4CAF50;
+    color: #fff;
+}
   
-  button:hover {
+button.btn-green:hover {
     background-color: #3e8e41;
     box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
-  }
+}
+
+button.btn-red {
+    background-color: #be3030;
+    color: #fff;
+}
+  
+button.btn-red:hover {
+    background-color: #f30303;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.2);
+}
+
+button.btn-large {
+    padding: 10px 20px;
+}
+
+button.btn-medium {
+    padding: 5px 9px;
+}
+
+button.btn-medium {
+    padding: 3px 5px;
+}
+
+.save-post-button {
+    float: right;
+    margin-top: 10px;
+}
 
 .post-list {
 
 }
+
 
 .post-row {
     display: flex;

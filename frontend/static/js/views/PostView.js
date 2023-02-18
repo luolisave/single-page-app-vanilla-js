@@ -21,9 +21,12 @@ export default class extends AbstractView {
         return `
             <h1>
                 <span>${this.post.title ? this.post.title: ''}</span>
-                <button onclick="$scope.save()">Save</button>
+                <button class="btn btn-green btn-large save-post-button " onclick="$scope.save()">Save</button>
             </h1>
             <div>
+                <input type="text" id="postTitle" value="${this.post.title ? this.post.title: ''}" />
+            </div>
+            <div style="padding-top: 8px">
                 <textarea id="postContent" class="content-textarea">${this.post.content}</textarea>
             </div>
         `;

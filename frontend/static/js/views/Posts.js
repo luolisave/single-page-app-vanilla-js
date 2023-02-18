@@ -26,7 +26,7 @@ export default class extends AbstractView {
                         ${rowSummary}
                     </div>
                     <div class="post-actions">
-                        <button style="color:red;">Del (TODO)</button>
+                        <button class="btn btn-red btn-medium">Del</button>
                     </div>
                 </div>
             `;
