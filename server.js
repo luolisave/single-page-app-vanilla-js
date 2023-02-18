@@ -14,7 +14,7 @@ let myDB = lmdb.open({
 function getData(key) {
     return myDB.get(key);
 }
-//*  test DB -----------------------------------------------------------------------------
+/*  test DB -----------------------------------------------------------------------------
 async function testDB() {
     await myDB.put('LMDB_TEST_KEY_2', { content: 'some test content in LMDB_TEST_KEY_2' });
     const text = myDB.get('LMDB_TEST_KEY_2').content; // 'Hello, World!'
