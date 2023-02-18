@@ -34,9 +34,9 @@ app.get('/posts', function (req, res) {
     let postKeys = myDB.getKeys().asArray;
     let posts = [];
     postKeys.forEach(key => {
-        const returnData = getData(key);
-        if (returnData) {
-            posts.push(returnData);
+        const data = getData(key);
+        if (data) {
+            posts.push({ key, data });
         }
     });
     res.send(posts);
