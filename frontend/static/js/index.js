@@ -47,7 +47,9 @@ const router = async () => {
             route: routes[0],
             result: [location.hash]
         };
-        if (location.path !== '/' && location.hash === '') { // TODO: should redirect to /#/ instead of hack like this. 
+
+        // TODO: should redirect to /#/ instead of hack like this. 
+        if (location.path !== '/' && location.hash === '') { // location.path !== '/' will cause issue if the site is under sub-folder.
             match = {
                 route: routes[1],
                 result: [location.hash]
