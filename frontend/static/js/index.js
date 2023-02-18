@@ -4,6 +4,7 @@ import PostView from "./views/PostView.js";
 import Settings from "./views/Settings.js";
 import Error404 from "./views/Error404.js";
 
+const pathnameOnLoad = location.pathname; console.log('pathnameOnLoad=',pathnameOnLoad);
 const pathToRegex = path => new RegExp("^" + path.replace(/\//g, "\\/").replace(/:\w+/g, "(.+)") + "$");
 
 const getParams = match => {
@@ -48,8 +49,9 @@ const router = async () => {
             result: [location.hash]
         };
 
-        // TODO: should redirect to /#/ instead of hack like this. 
-        if (location.path !== '/' && location.hash === '') { // location.path !== '/' will cause issue if the site is under sub-folder.
+        // fix load url without hash #/  cause page not found
+        // TODO: need to redirect from / to /#/
+        if (location.pathname === pathnameOnLoad && location.hash === '') {
             match = {
                 route: routes[1],
                 result: [location.hash]
