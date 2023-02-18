@@ -1,5 +1,5 @@
 import AbstractView from "./AbstractView.js";
-import { truncateString } from "../utils/string.util.js";
+import { truncateString, generateRandomString } from "../utils/string.util.js";
 
 export default class extends AbstractView {
     constructor(params) {
@@ -36,7 +36,10 @@ export default class extends AbstractView {
 
     async getHtml() {
         return `
-            <h1>Posts</h1>
+            <h2>
+                <span>Posts</span>
+                <a class="create-new-post-link" href="#/posts/${generateRandomString(16)}">New Post</a>
+            </h2>
             <div class="post-list">
                 ${await this.renderPosts()}
             </div>
@@ -54,5 +57,9 @@ export default class extends AbstractView {
                 alert('Delete failed!');
             }
         }
+    }
+
+    create() {
+        console.log('redirect');
     }
 }

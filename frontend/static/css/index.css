@@ -129,8 +129,10 @@ button.btn-medium {
     float: right;
 }
 
-.post-list {
-
+.create-new-post-link {
+    font-size:medium;
+    float: right;
+    padding-top:10px;
 }
 
 
