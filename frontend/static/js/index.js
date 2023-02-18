@@ -48,6 +48,7 @@ const router = async () => {
     }
 
     const view = new match.route.view(getParams(match));
+    window.$scope = view;
 
     document.querySelector("#app").innerHTML = await view.getHtml();
 };

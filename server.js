@@ -14,13 +14,15 @@ let myDB = lmdb.open({
 function getData(key) {
     return myDB.get(key);
 }
-/*  test DB -----------------------------------------------------------------------------
-async function testDB() {
-    await myDB.put('LMDB_TEST_KEY_2', { content: 'some test content in LMDB_TEST_KEY_2' });
-    const text = myDB.get('LMDB_TEST_KEY_2').content; // 'Hello, World!'
-    console.log(`myDB.get('LMDB_TEST_KEY_2' =`, text);
+//*  insert few test data to DB -----------------------------------------------------------------------------
+async function testDB(key) {
+    await myDB.put(key, { content: 'some test content in '+key });
+    const text = myDB.get(key).content; // 'Hello, World!'
+    console.log(`myDB.get('${key}' =`, text);
 }
-testDB();
+testDB('TEST_DB_KEY_1');
+testDB('TEST_DB_KEY_2');
+testDB('TEST_DB_KEY_3');
 // test db ends ------------------------------------------------------------------ -----
 //*/
 
