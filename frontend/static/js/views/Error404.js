@@ -3,16 +3,13 @@ import AbstractView from "./AbstractView.js";
 export default class extends AbstractView {
     constructor(params) {
         super(params);
-        this.setTitle("Posts");
+        this.setTitle("Page Not Found");
     }
 
     async getHtml() {
         return `
-            <h1>Posts</h1>
-            <p>You are viewing the posts!</p>
-            <p>
-                <a href="/posts/aaa" data-link>Post aaa</a>
-            </p>
+            <h1 style="color:red;">Page Not Found</h1>
+            <p style="color:red;">Please use valid route.</p>
         `;
     }
 }
