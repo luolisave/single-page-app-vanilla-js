@@ -22,19 +22,21 @@ const navigateTo = url => {
 
 const router = async () => {
     const routes = [
-        { path: "/404", view: Error404 },
-        { path: "/", view: Dashboard },
-        { path: "/posts", view: Posts },
-        { path: "/posts/:id", view: PostView },
-        { path: "/settings", view: Settings }
+        { path: "#/404", view: Error404 },
+        { path: "#/", view: Dashboard },
+        { path: "#/posts", view: Posts },
+        { path: "#/posts/:id", view: PostView },
+        { path: "#/settings", view: Settings }
         
     ];
+
+    console.log('location.pathname =', location.pathname, '    location.hash =', location.hash);
 
     // Test each route for potential match
     const potentialMatches = routes.map(route => {
         return {
             route: route,
-            result: location.pathname.match(pathToRegex(route.path))
+            result: location.hash.match(pathToRegex(route.path))
         };
     });
 
@@ -43,8 +45,14 @@ const router = async () => {
     if (!match) {
         match = {
             route: routes[0],
-            result: [location.pathname]
+            result: [location.hash]
         };
+        if (location.hash === '') { // hash hack for now. 
+            match = {
+                route: routes[1],
+                result: [location.hash]
+            };
+        }
     }
 
     const view = new match.route.view(getParams(match));
