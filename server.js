@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const timeUtil = require("./backend/time.util");
 
 const app = express();
 app.use(express.json());
@@ -73,8 +74,12 @@ app.post('/post', function (req, res) {
         if (!req.body) {
             res.send({status: 0, info: "Save Failed. Empty body!"});
         } else {
-            myDB.put(key, req.body).then((accept)=>{
-                console.log('/post POST accept = ', accept, ' ', req.body);
+            const objToSave = {
+                ...req.body,
+                modifiedDateTime: timeUtil.getCurrentISODateTime()
+            }
+            myDB.put(key, objToSave).then((accept)=>{
+                console.log('/post POST accept = ', accept, ' ', objToSave);
                 res.send({status: 1, info: "Save successfuly."});
             }, reject =>{
                 console.log('/post POST reject = ', reject);
