@@ -22,6 +22,7 @@ async function testDB(key) {
     const text = myDB.get(key).content; // 'Hello, World!'
     console.log(`myDB.get('${key}' =`, text);
 }
+myDB.remove(''); // remove item with ''(empty string) key
 testDB('TEST_DB_KEY_1');
 testDB('TEST_DB_KEY_2');
 testDB('TEST_DB_KEY_3');
@@ -31,6 +32,7 @@ testDB('TEST_DB_KEY_6');
 testDB('TEST_DB_KEY_7');
 testDB('TEST_DB_KEY_8');
 testDB('TEST_DB_KEY_9');
+
 // test db ends ------------------------------------------------------------------ -----
 //*/
 
@@ -47,6 +49,7 @@ app.get('/posts', function (req, res) {
             posts.push({ key, data });
         }
     });
+    posts = timeUtil.sortObjectsByModifiedDateTimeEpoch(posts, 'dec');
     res.send(posts);
 });
 
@@ -76,7 +79,8 @@ app.post('/post', function (req, res) {
         } else {
             const objToSave = {
                 ...req.body,
-                modifiedDateTime: timeUtil.getCurrentISODateTime()
+                modifiedDateTime: timeUtil.getCurrentISODateTime(),
+                modifiedDateTimeEpoch: timeUtil.getCurrentEpochTime()
             }
             myDB.put(key, objToSave).then((accept)=>{
                 console.log('/post POST accept = ', accept, ' ', objToSave);
