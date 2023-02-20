@@ -1,7 +1,11 @@
 # single-page-app-vanilla-js
 
-Taken from my YouTube Tutorial:
+Fork from YouTube Tutorial:
 https://www.youtube.com/watch?v=6BozpmSjk-Y
+
+## Did following modification
+1. Backend Change: Added a MLDB based backed, can save and load posts from database.
+2. Route change: Use locationhash to replace location.pathname.
 
 ### A Quick Test-Drive
 
