@@ -18,9 +18,14 @@ function getData(key) {
 }
 //*  insert few test data to DB -----------------------------------------------------------------------------
 async function testDB(key) {
-    await myDB.put(key, { title:'title '+key,  content: 'some test content in '+key });
+    await myDB.put(key, { 
+        title:'title '+key, 
+        content: 'some test content in '+key,
+        modifiedDateTime: timeUtil.getCurrentISODateTime(),
+        modifiedDateTimeEpoch: timeUtil.getCurrentEpochTime()
+    });
     const text = myDB.get(key).content; // 'Hello, World!'
-    console.log(`myDB.get('${key}' =`, text);
+    console.log(`add test data: '${key}' =`, text);
 }
 myDB.remove(''); // remove item with ''(empty string) key
 testDB('TEST_DB_KEY_1');
