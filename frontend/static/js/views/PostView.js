@@ -10,7 +10,7 @@ export default class extends AbstractView {
     }
 
     async getPost(key) {
-        let rs = await this.apiGet('/post?key='+key);
+        let rs = await this.apiGet('post?key='+key);
         if (rs && rs.status) {
             return rs.data;
         } else {
@@ -40,7 +40,7 @@ export default class extends AbstractView {
     async save() {
         let title = document.getElementById('postTitle').value;
         let text = document.getElementById('postContent').value;
-        const rs = await this.apiPost(`/post?key=${this.postId}`, {
+        const rs = await this.apiPost(`post?key=${this.postId}`, {
             title: title ? title : '',
             content: text
         });

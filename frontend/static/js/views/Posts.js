@@ -10,7 +10,7 @@ export default class extends AbstractView {
 
     async renderPosts() {
         let postsDiv = ``;
-        let posts = await this.apiGet('/posts');
+        let posts = await this.apiGet('posts');
         console.log('posts = ', posts);
         posts.forEach(post => {
             let rowSummary = ``;
@@ -50,7 +50,7 @@ export default class extends AbstractView {
     async deletePost(key) {
         let okay = confirm('Delete post: '+key);
         if (okay) {
-            const rs = await this.apiDelete(`/post?key=${key}`);
+            const rs = await this.apiDelete(`post?key=${key}`);
             if(rs && rs.status) {
                 createFloatNotice('Delete Success.');
                 document.querySelector("#app").innerHTML = await this.getHtml(); // TODO: need to find a better way to refresh page.
