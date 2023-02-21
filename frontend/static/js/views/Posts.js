@@ -1,5 +1,6 @@
 import AbstractView from "./AbstractView.js";
 import { truncateString, generateRandomString } from "../utils/string.util.js";
+import { createFloatNotice } from "../utils/float-notice.js";
 
 export default class extends AbstractView {
     constructor(params) {

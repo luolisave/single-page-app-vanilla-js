@@ -1,5 +1,5 @@
 import AbstractView from "./AbstractView.js";
-import { truncateString } from "../utils/string.util.js";
+import { createFloatNotice } from "../utils/float-notice.js";
 
 export default class extends AbstractView {
     post = {};
