@@ -5,7 +5,7 @@ const timeUtil = require("./backend/time.util");
 const app = express();
 app.use(express.json());
 
-// lmdb: https://www.npmjs.com/package/lmdb
+// lmdb Docs: https://www.npmjs.com/package/lmdb
 const lmdb = require('lmdb');
 const { get } = require("http");
 let myDB = lmdb.open({
@@ -24,7 +24,7 @@ async function testDB(key) {
         modifiedDateTime: timeUtil.getCurrentISODateTime(),
         modifiedDateTimeEpoch: timeUtil.getCurrentEpochTime()
     });
-    const text = myDB.get(key).content; // 'Hello, World!'
+    const text = myDB.get(key).content;
     console.log(`add test data: '${key}' =`, text);
 }
 myDB.remove(''); // remove item with ''(empty string) key
@@ -117,9 +117,6 @@ app.delete('/post', function (req, res) {
 
 app.use("/static", express.static(path.resolve(__dirname, "frontend", "static")));
 
-// app.get("/*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "frontend", "index.html"));
-// });
 app.use(express.static('frontend'));
 
 const port = process.env.PORT || 5555;
