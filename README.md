@@ -20,3 +20,10 @@ To give the completed code a quick test-drive:
 3. Open `localhost` in a web browser, using the port specified in `server.js` e.g. http://localhost:5555/
 
 > Refer to the **YouTube Tutorial** for step-by-step instructions to create the code. Enjoy! :)
+
+
+
+## Useful Linux Commands
+### Kill process to free port
+1. `lsof -i:5555` to find PID that uses port 5555
+2. `kill {{pid}}` to kill the pid
