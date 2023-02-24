@@ -13,24 +13,23 @@ export default class extends AbstractView {
         let posts = await this.apiGet('posts');
         console.log('posts = ', posts);
         posts.forEach(post => {
-            let rowSummary = ``;
-            if (post.data.title) {
-                rowSummary = `<a href="#/posts/${post.key}">${post.data.title}</a>`
-            } else if(post.data.url) {
-                rowSummary = `<a target="_blank" href="${post.data.url}">${post.data.url}</a>`
-            } else {
-                rowSummary = `<a href="#/posts/${post.key}">${truncateString(post.data.content, 50)}</a>`
-            }
             postsDiv += `
-                <div class="post-row">
-                    <div class="post-title">
-                        ${rowSummary}
-                    </div>
-                    <div class="post-actions">
-                        <button onclick="$scope.deletePost('${post.key}')" class="btn btn-red btn-medium">Del</button>
-                    </div>
-                </div>
+                <post-item 
+                    key="${post.key}"
+                >
+                    ${post.data.title}
+                </post-item>
             `;
+            // postsDiv += `
+            //     <div class="post-row">
+            //         <div class="post-title">
+            //             <a href="#/posts/${post.key}">${post.data.title}
+            //         </div>
+            //         <div class="post-actions">
+            //             <button onclick="$scope.deletePost('${post.key}')" class="btn btn-red btn-medium">Del</button>
+            //         </div>
+            //     </div>
+            // `;
         });
         return `${postsDiv}`;
     }
