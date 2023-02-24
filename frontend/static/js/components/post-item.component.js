@@ -61,9 +61,13 @@ export class PostItemComponent extends HTMLElement {
         this.shadow = shadow;
         shadow.append(postItemTemplate.content.cloneNode(true));
 
+        // delete-post-func
+        const clickDeleteBtnFunction = this.getAttribute('delete-post-func');
         const delButton = shadow.querySelector('#delete-post-btn');
         delButton.addEventListener('click', () => {
-            $scope.deletePost(this.key); // TODO: pass in delete function maybe a better idea.
+            if (clickDeleteBtnFunction) {
+                eval(clickDeleteBtnFunction);
+            }
         });
     }
 

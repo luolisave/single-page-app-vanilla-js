@@ -16,6 +16,7 @@ export default class extends AbstractView {
             postsDiv += `
                 <post-item 
                     key="${post.key}"
+                    delete-post-func="$scope.deletePost('${post.key}')"
                 >
                     ${post.data.title}
                 </post-item>
