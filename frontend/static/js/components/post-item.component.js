@@ -58,13 +58,8 @@ export class PostItemComponent extends HTMLElement {
     constructor(){
         super();
         const shadow = this.attachShadow({mode:"open"});
+        this.shadow = shadow;
         shadow.append(postItemTemplate.content.cloneNode(true));
-
-        const postTitleLink = shadow.querySelector('#post-title-link');
-        setTimeout(() => {
-            // console.log('this.key =', this.key);
-            postTitleLink.setAttribute('href', `#/posts/${this.key}`);
-        }, 100);
 
         const delButton = shadow.querySelector('#delete-post-btn');
         delButton.addEventListener('click', () => {
@@ -107,6 +102,9 @@ export class PostItemComponent extends HTMLElement {
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === 'key') {
             this.key = newValue;
+
+            const postTitleLink = this.shadow.querySelector('#post-title-link');
+            postTitleLink.setAttribute('href', `#/posts/${this.key}`);
         }
     }
 }
