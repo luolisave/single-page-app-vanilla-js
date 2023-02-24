@@ -16,29 +16,15 @@
     </nav>
     <div id="app"></div>
     <script type="module" src="static/js/index.js"></script>
+    <script type="module" src="static/js/components/_.components.js"></script>
     
     
     <!-- https://www.youtube.com/watch?v=2I7uX8m0Ta0 -->
-    <!-- <my-button my-click="myClickFunction()">Click me!</my-button>
+    <post-item my-click="myClickFunction()">Click me!</my-button>
     <script>
         function myClickFunction() {
             alert('You clicked the button!');
         }
-        class MyButton extends HTMLElement {
-            connectedCallback() {
-                const button = document.createElement('button');
-                button.textContent = 'Click me!';
-                button.addEventListener('click', () => {
-                const clickFunction = this.getAttribute('my-click');
-                if (clickFunction) {
-                    eval(clickFunction);
-                }
-                });
-                this.appendChild(button);
-            }
-        }
-
-        customElements.define('my-button', MyButton);
-    </script> -->
+    </script>
 </body>
 </html>
