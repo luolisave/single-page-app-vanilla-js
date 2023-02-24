@@ -53,6 +53,7 @@ postItemTemplate.innerHTML = `
 `;
 
 export class PostItemComponent extends HTMLElement {
+    shadow;
     key = null;
     constructor(){
         super();
@@ -60,7 +61,10 @@ export class PostItemComponent extends HTMLElement {
         shadow.append(postItemTemplate.content.cloneNode(true));
 
         const postTitleLink = shadow.querySelector('#post-title-link');
-        postTitleLink.setAttribute('href', `#/posts/${this.key}`);
+        setTimeout(() => {
+            // console.log('this.key =', this.key);
+            postTitleLink.setAttribute('href', `#/posts/${this.key}`);
+        }, 100);
 
         const delButton = shadow.querySelector('#delete-post-btn');
         delButton.addEventListener('click', () => {
@@ -75,28 +79,32 @@ export class PostItemComponent extends HTMLElement {
         
     }
 
-    // connectedCallback() {
-    //     const button = document.createElement('button');
-    //     button.textContent = 'Test: Click me!';
-    //     button.addEventListener('click', () => {
-    //     const clickFunction = this.getAttribute('my-click');
-    //     if (clickFunction) {
-    //         eval(clickFunction);
-    //     }
-    //     });
-    //     this.appendChild(button);
-    // }
+    /*
+    connectedCallback() {
+        const button = document.createElement('button');
+        button.textContent = 'Test: Click me!';
+        button.addEventListener('click', () => {
+        const clickFunction = this.getAttribute('my-click');
+        if (clickFunction) {
+            eval(clickFunction);
+        }
+        });
+        this.appendChild(button);
+    }
+    //*/
 
 
+    /**
+     * regiester attributes to watch them
+     */
     static get observedAttributes() {
         return ["key"];
     }
 
     /**
-     * 
+     * watch attribute changes
      */
     attributeChangedCallback(name, oldValue, newValue) {
-        console.log(name, oldValue, newValue);
         if (name === 'key') {
             this.key = newValue;
         }

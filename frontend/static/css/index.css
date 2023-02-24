@@ -135,28 +135,6 @@ button.btn-medium {
     padding-top:10px;
 }
 
-
-.post-row {
-    display: flex;
-    flex-direction: row;
-    height: 3rem;
-    border-bottom: 1px solid rgb(216, 216, 216);
-    vertical-align: center;
-}
-
-.post-title {
-    padding-top: 0.5rem;
-    width: 80%;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.post-actions {
-    padding-top: 0.65rem;
-    width: 20%;
-    text-align: right;
-}
-
 .content-textarea{
     width: 100%;
     min-height: 500px;

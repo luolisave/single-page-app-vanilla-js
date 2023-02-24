@@ -11,7 +11,7 @@ export default class extends AbstractView {
     async renderPosts() {
         let postsDiv = ``;
         let posts = await this.apiGet('posts');
-        console.log('posts = ', posts);
+        // console.log('posts = ', posts);
         posts.forEach(post => {
             postsDiv += `
                 <post-item 
@@ -20,16 +20,6 @@ export default class extends AbstractView {
                     ${post.data.title}
                 </post-item>
             `;
-            // postsDiv += `
-            //     <div class="post-row">
-            //         <div class="post-title">
-            //             <a href="#/posts/${post.key}">${post.data.title}
-            //         </div>
-            //         <div class="post-actions">
-            //             <button onclick="$scope.deletePost('${post.key}')" class="btn btn-red btn-medium">Del</button>
-            //         </div>
-            //     </div>
-            // `;
         });
         return `${postsDiv}`;
     }
