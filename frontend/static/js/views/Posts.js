@@ -31,9 +31,9 @@ export default class extends AbstractView {
                 <span>Posts</span>
                 <a class="create-new-post-link" href="#/posts/__POST__${generateRandomString(16)}">New Post</a>
             </h2>
-            <div class="post-list">
+            <post-list>
                 ${await this.renderPosts()}
-            </div>
+            </post-list>
         `;
     }
 
