@@ -27,3 +27,6 @@ To give the completed code a quick test-drive:
 ### Kill process to free port
 1. `lsof -i:5555` to find PID that uses port 5555
 2. `kill {{pid}}` to kill the pid
+
+### kill processes to free multiple ports
+`kill -9 $(lsof -ti:3000,5555)`
