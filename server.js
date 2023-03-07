@@ -28,15 +28,15 @@ async function testDB(key) {
     console.log(`add test data: '${key}' =`, text);
 }
 myDB.remove(''); // remove item with ''(empty string) key
-testDB('TEST_DB_KEY_1');
-testDB('TEST_DB_KEY_2');
-testDB('TEST_DB_KEY_3');
-testDB('TEST_DB_KEY_4');
-testDB('TEST_DB_KEY_5');
-testDB('TEST_DB_KEY_6');
-testDB('TEST_DB_KEY_7');
-testDB('TEST_DB_KEY_8');
-testDB('TEST_DB_KEY_9');
+testDB('__POST__TEST_DB_KEY_p1');
+testDB('__POST__TEST_DB_KEY_p2');
+testDB('__POST__TEST_DB_KEY_p3');
+testDB('__POST__TEST_DB_KEY_p4');
+testDB('__POST__TEST_DB_KEY_p5');
+testDB('__POST__TEST_DB_KEY_p6');
+testDB('__POST__TEST_DB_KEY_p7');
+testDB('__POST__TEST_DB_KEY_p8');
+testDB('__POST__TEST_DB_KEY_p9');
 
 // test db ends ------------------------------------------------------------------ -----
 //*/
@@ -48,6 +48,9 @@ app.get('/post-keys', function (req, res) {
 app.get('/posts', function (req, res) {
     let postKeys = myDB.getKeys().asArray;
     let posts = [];
+    if (req.query && req.query.prefix) {
+        postKeys = postKeys.filter(str => str.startsWith(req.query.prefix));
+    }
     postKeys.forEach(key => {
         const data = getData(key);
         if (data) {
